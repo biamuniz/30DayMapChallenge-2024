@@ -9,7 +9,10 @@ library(patchwork)
 library(googlesheets4)
 library(janitor)
 library(shadowtext)
-
+library(magick)
+library(grid)
+library(gridExtra)
+library(ggplotify)
 sheet_url <- "https://docs.google.com/spreadsheets/d/1tgWGanTiCr9tgHTd34MnDQ8gt0yDATghi-OoemokdJY/edit#gid=0"
 df_raw <- read_sheet(sheet_url) |> clean_names()
 df_raw <- df_raw |>
@@ -23,11 +26,11 @@ df_raw <- df_raw |>
     )
   ) |>
   mutate(local = ifelse(local == "Centro Cultural São Paulo", "CCSP", local)) |>
-  mutate(local = ifelse(local == "Vale do Anhangabaú", "Vl. Anhangabaú", local)) |> 
+  mutate(local = ifelse(local == "Vale do Anhangabaú", "Vl. Anhangabaú", local)) |>
   mutate(local = ifelse(local == "Autódromo de Interlagos", "Autódromo", local))
 df <- df_raw |>
-  mutate(across(where(is.character), str_trim)) |> 
-  count(local, latitude, longitude, name = "frequencia") |> 
+  mutate(across(where(is.character), str_trim)) |>
+  count(local, latitude, longitude, name = "frequencia") |>
   filter(!is.na(latitude) &
            !is.na(longitude))
 
@@ -63,10 +66,11 @@ p_map <- ggplot() +
     fill = "#D88A8A",
     alpha = 0.7
   ) +
-  labs(title = "Onde vi shows em São Paulo",
-       subtitle = "O mapa mostra casas de show, bares e teatros, centros culturais onde vi shows em desde 2013. 
+  labs(
+    title = "Onde vi shows em São Paulo",
+    subtitle = "O mapa mostra casas de show, bares e teatros, centros culturais onde vi shows na cidade desde 2013.
     Círculos indicam cada espaço, e barras destacam os lugares com mais de cinco apresentações.
-    Quanto maior o círculo ou a barra, maior a quantidade de shows. 
+    Quanto maior o círculo ou a barra, maior a quantidade de shows.
     Passe o mouse para mais detalhes."
   ) +
   theme_void() +
@@ -94,7 +98,6 @@ p_top10 <- top10_locais |>
     vjust = 0.5,
     color = "white"
   ) +
-  labs(x = "Frequência", y = NULL) +
   theme_minimal() +
   geom_shadowtext(
     data = subset(top10_locais, frequencia > 4),
@@ -138,21 +141,34 @@ title <- ggplot() +
   theme_void() +
   theme(plot.margin = margin(b = 10, l = 10))
 
-credits <- ggplot() + 
-  annotate("text", x = 1, y = 1, 
-           label = "Dados e visualização: Bianca Muniz (@biancmuniz)", 
-           size = 2.5, hjust = 0.2, family="Raleway") +
-  theme_void() +
-  theme(
-    plot.margin = margin(t = 10, l = 10)
-  )
 
+# Carregar o QR code
+qr_code <- image_read("/Users/biancamuniz/Downloads/biancamuniz.png")
+
+qr_code_grob <- rasterGrob(qr_code, interpolate = TRUE)
+
+credits_text <- textGrob(
+  "Dados e visualização:\nBianca Muniz",
+  x = 1.08, y = 0.5, hjust = 1, vjust = 0.5,  # hjust = 1 para alinhar à direita
+  gp = gpar(fontfamily = "Raleway", fontsize = 5)
+)
+
+# Combinar o texto dos créditos com o QR code lado a lado
+credits_combined <- arrangeGrob(
+  credits_text, qr_code_grob,
+  ncol = 2, widths = c(0.8, 0.2)
+)
+
+# Converter credits_combined para ggplot para uso com patchwork
+credits_plot <- as.ggplot(credits_combined)
+
+# Combinar o título, mapa, top 10 e créditos (incluindo o QR code)
 p_combined <- title / (p_map + p_top10 + plot_layout(
   ncol = 2,
   widths = c(2, 2),
   guides = "collect"
-)) / credits +
-  plot_layout(heights = c(0.1, 1, 0.05)) &
+)) / credits_plot +
+  plot_layout(heights = c(0.1, 1, 0.1)) &
   theme(
     plot.margin = margin(
       t = 0,
@@ -160,11 +176,20 @@ p_combined <- title / (p_map + p_top10 + plot_layout(
       l = 0,
       r = 0
     ),
-    plot.subtitle = element_text(family = "Raleway", size = 9, hjust = 0),
+    plot.subtitle = element_text(
+      family = "Raleway",
+      size = 9,
+      hjust = 0
+    ),
     plot.caption = element_text(family = "Bitter"),
-    plot.title = element_text(family = "Bitter", face = "bold", size = 20)
+    plot.title = element_text(
+      family = "Bitter",
+      face = "bold",
+      size = 20
+    )
   )
 
+# Gerar o gráfico interativo
 interactive_chart <- girafe(
   ggobj = p_combined,
   options = list(
@@ -173,4 +198,11 @@ interactive_chart <- girafe(
     opts_hover(css = "stroke-width:2px;")
   )
 )
-htmltools::save_html(interactive_chart, file.path("/Users/biancamuniz/Documents/repos/30DayMapChallenge-2024/plots/01-points.html"))
+
+# Salvar o gráfico com o QR code e créditos
+htmltools::save_html(
+  interactive_chart,
+  file.path(
+    "/Users/biancamuniz/Documents/repos/30DayMapChallenge-2024/plots/01-points.html"
+  )
+)
