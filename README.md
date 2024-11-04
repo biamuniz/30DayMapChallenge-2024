@@ -12,6 +12,6 @@
 
 ## Dia 2: Linhas
 
-![Dia 2: Linhas](plots/02_lines.png)
+![Dia 2: Linhas](social/instagram/day_02_a.png)
 
 [código](code/02_lines.R) | [mapa](plots/02_lines.png)
