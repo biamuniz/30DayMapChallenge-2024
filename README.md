@@ -15,3 +15,8 @@
 ![Dia 2: Linhas](social/instagram/day_02_a.png)
 
 [código](code/02_lines.R) | [mapa](plots/02_lines.png)
+
+
+## Dia 3: Polígonos
+
+## Dia 4: Hexagonos
