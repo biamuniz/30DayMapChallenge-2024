@@ -11,3 +11,7 @@
 
 
 ## Dia 2: Linhas
+
+![Dia 2: Linhas](plots/02_lines.png)
+
+[código](code/02_lines.R) | [mapa](plots/02_lines.png)
