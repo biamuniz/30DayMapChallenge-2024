@@ -11,12 +11,12 @@
 
 
 ## Dia 2: Linhas
-
-![Dia 2: Linhas](social/instagram/day_02_a.png)
+<p align="center"><img src="social/instagram/day_02_a.png" alt="Dia 2: Linhas" width="600"/></p>
 
 [código](code/02_lines.R) | [mapa](plots/02_lines.png)
 
 
 ## Dia 3: Polígonos
+<p align="center"><img src="social/instagram/day_03.png" alt="Dia 3: Polígonos" width="600"/></p>
 
-## Dia 4: Hexagonos
+[código](code/03_polygons.R) | [mapa](plots/03_polygons.svg)
