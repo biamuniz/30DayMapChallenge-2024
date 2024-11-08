@@ -19,3 +19,14 @@
 <p align="center"><img src="social/instagram/day_03.png" alt="Dia 3: Polígonos" width="500"/></p>
 
 [código](code/03_polygons.R) | [mapa](plots/03_polygons.svg)
+
+
+## Dia 4: Hexágonos
+<p align="center"><img src="social/bluesky/day_04_bsky.png" alt="Dia 4: Hexágonos" width="500"/></p>
+
+sem código porque fiz no Figma :D
+
+## Dia 5: Uma jornada
+<p align="center"><img src="social/instagram/day_05.png" alt="Dia 5: Uma jornada" width="500"/></p>
+
+[código](code/05_a_journey.R) | [mapa](plots/05_a_journey.png)
