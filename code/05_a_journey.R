@@ -1,5 +1,5 @@
 # Carregar pacotes necessários
-pacman::p_load(tidyverse, grid, png, osrm, sf, rnaturalearth, rnaturalearthdata)
+pacman::p_load(tidyverse, grid, png, osrm, sf, rnaturalearth, rnaturalearthdata, rmarkdown)
 
 # Definindo textos e imagens
 label_title <- glue::glue("O MAPA DE UM ENCONTRO")
