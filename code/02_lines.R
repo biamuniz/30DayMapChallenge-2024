@@ -70,5 +70,6 @@ ggplot() +
 
 
 # Salvar o gráfico em SVG e PNG
-ggsave("/Users/biancamuniz/Documents/repos/30DayMapChallenge-2024/plots/02_lines.svg", device = "svg")
-ggsave("/Users/biancamuniz/Documents/repos/30DayMapChallenge-2024/plots/02_lines.png", device = "png")
+path <- here::here("plots/day02", "day02_2024")
+ggsave(glue::glue("{path}_bsky.svg"), device = "svg")
+ggsave(glue::glue("{path}_bsky.png"), device = "png")
