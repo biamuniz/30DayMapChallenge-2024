@@ -33,11 +33,16 @@ sem código porque fiz no Figma :D
 
 
 ## 8: Dados: HDX
-<p align="center"><img src="plots/day08/day_08.gif" alt="Dia 8: HDXa" width="500"/></p>
+<p align="center"><img src="plots/day08/day_08.gif" alt="Dia 8: HDX" width="500"/></p>
 
 [código](code/08_hdx.R) | [mapa](plots/day08/)
 
+## 10: Papel e caneta
+
+<p align="center"><img src="plots/day10/day_10.jpg" alt="Dia 10: Papel e caneta" width="500"/></p>
+
+
 ## 20: Dados: OpenStreetMap
-<p align="center"><img src="plots/day20/day20_social_a.png" alt="Dia 8: HDXa" width="500"/></p>
+<p align="center"><img src="plots/day20/day20_social_a.png" alt="Dia 20: OSM Data" width="500"/></p>
 
 [código](code/20_osm.R) | [mapa](plots/day20/)
