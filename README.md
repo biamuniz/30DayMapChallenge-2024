@@ -37,6 +37,11 @@ sem código porque fiz no Figma :D
 
 [código](code/08_hdx.R) | [mapa](plots/day08/)
 
+## 9: Inteligência Artificial
+<p align="center"><img src="plots/day09/day_09.jpg" alt="Dia 9: IA" width="500"/></p>
+
+[prompt](https://chatgpt.com/share/67439531-8d80-8010-9134-da52b28a852a) | horrível, Cajamar-vintage-freestyle
+
 ## 10: Papel e caneta
 
 <p align="center"><img src="plots/day10/day_10.jpg" alt="Dia 10: Papel e caneta" width="500"/></p>
