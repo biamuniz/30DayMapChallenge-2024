@@ -34,7 +34,8 @@ sem código porque fiz no Figma :D
 ...
 
 ## 7: Vintage
-...
+<p align="center"><img src="Rplot01.png" alt="Dia 7: Vintage" width="500"/></p>
+
 
 ## 8: Dados: HDX
 <p align="center"><img src="plots/day08/day_08.gif" alt="Dia 8: HDX" width="500"/></p>
@@ -48,7 +49,7 @@ sem código porque fiz no Figma :D
 
 ## 10: Papel e caneta
 
-<p align="center"><img src="plots/day10/day_10.jpg" alt="Dia 10: Papel e caneta" width="500"/></p>
+<p align="center"><img src="plots/day10/day_10.jpg" alt="Dia 10: Papel e caneta"/></p>
 
 ## 11: Ártico
 ...
